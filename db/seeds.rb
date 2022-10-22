@@ -4,4 +4,20 @@
 # Examples:
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+#   Character.create(name: "Luke", movie: movies.first
+
+puts "Cleaning up database"
+Movie.destroy_all
+puts "Cleaned up"
+
+puts "Adding movies"
+20.times do 
+  movie = Movie.new(
+    title: Faker::Movie.title , 
+    overview: Faker::Movie.quote, 
+    poster_url: "https://image.tmdb.org/t/p/original/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg", 
+    rating: [1,2,3,4,5].sample)
+    movie.save!
+  puts "Movie #{movie.title} created"  
+end
+puts "#{Movie.count} created"
